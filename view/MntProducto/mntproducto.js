@@ -1,7 +1,9 @@
 var tabla;
 
 function init(){
-
+    $("#producto_form").on("submit", function(e){
+        guardaryeditar(e);
+    });
 }
 
 $(document).ready(function(){
@@ -53,6 +55,69 @@ $(document).ready(function(){
             }
 		}
 	}).DataTable();
+});
+
+function guardaryeditar(e){
+    e.preventDefault();
+    var formData = new FormData($("#producto_form")[0]);
+
+    //Se llama a un ajax
+    $.ajax({
+        //Ruta del controlador y la opcion del switch
+        url: "../../controllers/producto.php?op=guardaryeditar",
+        type: "POST",
+        //La data se encuentra en el formData que se ha declarado anteriormente
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(datos){
+            //Si todo sale correcto se resetea el formulario, se esconde el modal y se refresca el dataTable
+            $('#producto_form')[0].reset();
+            $("#modalmantenimiento").modal('hide');
+            $('#producto_data').DataTable().ajax.reload();
+
+            swal.fire(
+                'Registro!',
+                'Se registro correctamente.',
+                'success'
+            )
+        }
+    });
+}
+
+function editar(prod_id){
+    console.log(prod_id);
+}
+
+function eliminar(prod_id){
+    swal.fire({
+        title: 'CRUD',
+        text: 'Decea eliminar el registro?',
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        cancelButtonText: 'No',
+        reverseButtons: true,
+    }).then((result)=> {
+        if(result.isConfirmed){
+            $.post("../../controllers/producto.php?op=eliminar", {prod_id:prod_id}, function(data) {
+                
+            });
+
+            $('#producto_data').DataTable().ajax.reload();
+
+            swal.fire(
+                'Eliminado!',
+                'El registro se elimino correctamente.',
+                'success'
+            )
+        }
+    })
+}
+
+$(document).on("click", "#btnnuevo", function(){
+    $('#mdltitulo').html('Nuevo Registro');
+    $('#modalmantenimiento').modal('show');
 });
 
 init();

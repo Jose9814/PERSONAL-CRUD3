@@ -215,6 +215,12 @@
                     <div class="card-header">
                         <strong class="card-title">Mantenimiento de Producto</strong>
                     </div>
+                    <br>
+                    <div class="col-md-12 text-center">
+                        <button type="button" id="btnnuevo" class="btn btn-outline-primary btn-lg btn-block" data-toggle="modal" data-target="#modalmantenimiento">
+                            Agregar registro
+                        </button>
+                    </div>
                     <div class="card-body">
                         <table id="producto_data" class="table table-striped table-bordered">
                             <thead>
@@ -251,13 +257,15 @@
     </div>
     <!-- /#right-panel -->
 
+    <?php require_once("modalmantenimiento.php"); ?>
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="../../public/js/main.js"></script>
-    
+
     <script src="../../public/js/lib/data-table/datatables.min.js"></script>
     <script src="../../public/js/lib/data-table/dataTables.bootstrap.min.js"></script>
     <script src="../../public/js/lib/data-table/dataTables.buttons.min.js"></script>
@@ -274,7 +282,7 @@
             $('#bootstrap-data-table-export').DataTable();
         });
     </script>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="mntproducto.js"></script>
 </body>
 
