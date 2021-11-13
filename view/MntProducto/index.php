@@ -36,6 +36,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Descripcion</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
